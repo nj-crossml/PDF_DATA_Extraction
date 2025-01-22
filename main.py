@@ -113,7 +113,7 @@ def process_pdf(uploaded_file, doc_converter):
 
 def main():
     st.set_page_config(
-        page_title="PDF Extract with Docling",
+        page_title="PDF Data Extraction",
         page_icon="📄",
         layout="wide"
     )
@@ -123,14 +123,14 @@ def main():
     uploaded_file = st.file_uploader("Choose a PDF file", type=['pdf'])
 
     if uploaded_file is not None:
-        with st.spinner("Processing PDF with Docling AI..."):
+        with st.spinner("Processing PDF "):
             markdown_content, multimodal_pages = process_pdf(uploaded_file, doc_converter)
             
             if markdown_content and multimodal_pages:
-                tab1, tab2, tab3 = st.tabs(["AI Preview", "Extracted Content", "Document Analysis"])
+                tab1, tab2, tab3 = st.tabs(["Preview", "Extracted Content", "Analysis"])
                 
                 with tab1:
-                    st.markdown("### AI-Generated Preview")
+                    st.markdown("### Preview")
                     st.markdown(markdown_content)
                 
                 with tab2:
@@ -149,7 +149,7 @@ def main():
                     )
                 
                 with tab3:
-                    st.subheader("AI Document Analysis")
+                    st.subheader("Analysis")
                     for page in multimodal_pages:
                         with st.expander(f"Page {page['page_number']} Analysis"):
                             col1, col2 = st.columns(2)
